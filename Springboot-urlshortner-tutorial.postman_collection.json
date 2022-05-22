@@ -1,0 +1,68 @@
+{
+	"info": {
+		"_postman_id": "10e65d35-0deb-4137-9c80-987b6558addd",
+		"name": "Springboot-urlshortner-tutorial",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create short url",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a676d3cb-9274-433a-9fec-9c7d0ceaea94",
+						"exec": [
+							"let urlId = pm.response.headers.get(\"id\");\r",
+							"pm.environment.set(\"urlId\", urlId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "https://www.facebook.com/"
+				},
+				"url": {
+					"raw": "http://localhost:10095/rest/url",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10095",
+					"path": [
+						"rest",
+						"url"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get original url",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:10095/rest/url/{{urlId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "10095",
+					"path": [
+						"rest",
+						"url",
+						"{{urlId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
